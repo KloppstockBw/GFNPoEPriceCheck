@@ -1,10 +1,19 @@
 # GFNPoEPriceCheck
+.
+
+.
 
 THIS IS BETA
 
+.
+
+.
+
 Requirements:
 Autoit - https://www.autoitscript.com/site/autoit/downloads/
+
 Awakened POE Trade - https://github.com/SnosMe/awakened-poe-trade
+
 Path of exile for Steam in GFN
 
 Install:
