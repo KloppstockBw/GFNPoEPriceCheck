@@ -8,10 +8,6 @@ $targetX = $maxWidth * 0.1
 $targetY = $maxHeight * 0.111
 $searchString = '"ty":"is","ibi":1,"s":"'
 
-
-	Run("C:\Users\pjw\AppData\Local\Programs\Awakened PoE Trade\Awakened PoE Trade.exe")
-    Run ("C:\Users\pjw\Desktop\HP Support.lnk")
-	
 ;_____________________
 ;      Change this always:
 ;_____________________
