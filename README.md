@@ -22,4 +22,4 @@ Install:
 3. Set Steam overlay default key to F7
 4. Open Awakened POE trade in Browser and change "PoE window title" to the right window title. In German it is "Path of Exile bei GeForce NOW"
 5. Run script. 
-   The first price check after running the script takes 10 sek because the docs.google.com takes some time to be loaded 
+   The first price check after running the script takes 10 sek because the docs.google.com takes some time to be loaded inside gfn  
