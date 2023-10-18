@@ -24,7 +24,7 @@ If StringRight($sFile, 4) = ".exe" Then Run($sFile)
 ;      Change this always:
 ;_____________________
 
-	$sURL = "https://docs.google.com/document/d/1pn67i9unniinYAEVXHXZqHQNl5GzEGlGSPcUQRgWY2Y/edit"
+	$sURL = "https://docs.google.com/document/d/1pn67i9rfgdfgEVXHXZqHQNl5GzEGlGSPcUQRgWY2Y/edit"
 	
 ;_____________________
 
