@@ -24,7 +24,7 @@ If StringRight($sFile, 4) = ".exe" Then Run($sFile)
 ;      Change this always:
 ;_____________________
 
-	$sURL = "https://docs.google.com/document/d/1pn67i9usdsdasdXZqHQNl5GzEGlGSPcUQRgWY2Y/edit"
+	$sURL = "https://docs.google.com/document/d/1pn67i9unniinYAEVXHXZqHQNl5GzEGlGSPcUQRgWY2Y/edit"
 	
 ;_____________________
 
@@ -88,6 +88,8 @@ EndFunc
 ;Rename Window for Awakened POE Trade
 Func WindowRename()
 If WinExists("Path of Exile") Then
+ $windowClassList = WinGetClassList("Path of Exile")
+ If StringInStr($windowClassList, "CEFCLIENT") Then
 Else
     While True
         Local $hWnd = WinGetHandle("[REGEXPTITLE:(?i)(.*Path of Exile.*GeForce.*)]")
@@ -96,6 +98,7 @@ Else
         EndIf
         Sleep(1000)
     WEnd
+EndIf
 EndIf
 EndFunc
 
