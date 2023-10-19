@@ -31,3 +31,10 @@ Install:
 4. You dont need to change settings in Awakened PoE Trade anymore. If you changed the Window title then please revert back to "Path of Exile"
 5. Run script. 
    The first price check after running the script takes 10 sek because the docs.google.com takes some time to be loaded inside gfn  
+
+Usage :
+F5 = Goto hideout 
+F6 = price check (hover mouse over the item) 
+F7 = open steam overlay (not needed for this script) 
+F9 = Respond to last whisper with thanks 
+F11 = force close script 
