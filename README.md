@@ -34,6 +34,7 @@ Install:
 
 Usage:
 
+
 F5 = Goto hideout 
 
 F6 = price check (hover mouse over the item) 
