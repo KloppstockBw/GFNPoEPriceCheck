@@ -32,7 +32,8 @@ Install:
 5. Run script. 
    The first price check after running the script takes 10 sek because the docs.google.com takes some time to be loaded inside gfn  
 
-Usage :
+Usage:
+
 F5 = Goto hideout 
 
 F6 = price check (hover mouse over the item) 
