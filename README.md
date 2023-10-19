@@ -34,7 +34,12 @@ Install:
 
 Usage :
 F5 = Goto hideout 
+
 F6 = price check (hover mouse over the item) 
+
 F7 = open steam overlay (not needed for this script) 
+
 F9 = Respond to last whisper with thanks 
+
 F11 = force close script 
+
