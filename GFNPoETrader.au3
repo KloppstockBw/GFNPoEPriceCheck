@@ -24,7 +24,7 @@ If StringRight($sFile, 4) = ".exe" Then Run($sFile)
 ;      Change this always:
 ;_____________________
 
-	$sURL = "https://docs.google.com/document/d/1pn67i9rfgdfgEVXHXZqHQNl5GzEGlGSPcUQRgWY2Y/edit"
+	$sURL = "https://docs.google.com/document/d/1pn67changemeHXZqHQNl5GzEGlGSPcUQRgWY2Y/edit"
 	
 ;_____________________
 
@@ -43,8 +43,9 @@ If StringRight($sFile, 4) = ".exe" Then Run($sFile)
 
 AutorunAwakened()
 awakenedrunning()
-WindowRename()
 configMaus()
+WindowRename()
+
 
 
 
@@ -87,19 +88,13 @@ EndFunc
 
 ;Rename Window for Awakened POE Trade
 Func WindowRename()
-If WinExists("Path of Exile") Then
- $windowClassList = WinGetClassList("Path of Exile")
- If StringInStr($windowClassList, "CEFCLIENT") Then
-Else
-    While True
-        Local $hWnd = WinGetHandle("[REGEXPTITLE:(?i)(.*Path of Exile.*GeForce.*)]")
-        If $hWnd <> 0 Then
-            If _WinAPI_SetWindowText($hWnd, "Path of Exile") Then ExitLoop
-        EndIf
-        Sleep(1000)
-    WEnd
-EndIf
-EndIf
+While 1
+    Local $hWnd = WinGetHandle("[REGEXPTITLE:(?i)(.*Path of Exile.*GeForce.*)]")
+    If $hWnd <> 0 Then
+        If WinSetTitle($hWnd, "", "Path of Exile") Then ExitLoop
+    EndIf
+    Sleep(1000)
+WEnd
 EndFunc
 
 ;Config Mouse setup 
@@ -113,6 +108,7 @@ Func configMaus()
 		$Form1 = GUICreate("Path of Exile", @DesktopWidth, @DesktopHeight, 0, 0, $WS_POPUP)
 		GUISetState(@SW_SHOWMAXIMIZED)
 		MsgBox($MB_SYSTEMMODAL, "Show me where the Awakened PoE Trade Field is", "Please move the mouse curser to the position where the script should paste the item details to awakened POE Trade. Usually it's in the upper left corner and the field says: Price Check (Ctrl + V). Then hit space bar on your keyboard to save that Mouse position.")
+		Sleep(200)
 		Send("+{SPACE}")
 		While Not _IsPressed("20") ; 
 			Sleep(50)
@@ -155,8 +151,11 @@ EndFunc
 
 	Func copyItem()
 		If Not WinActive("Path of Exile") Then Return
-		Opt("SendKeyDelay", 150)
+		$sMausKoordinaten = IniRead($sIniFile, "AwakenedPasteWindow", "Koordinaten", "-1,-1")
+	    $aKoordinaten = StringSplit($sMausKoordinaten, ',')
 		$savedMousePos = MouseGetPos()
+		Opt("SendKeyDelay", 150)
+		Sleep(100)
 		Send("!^c")
 		Send("{F7}")
 		Sleep(100)
