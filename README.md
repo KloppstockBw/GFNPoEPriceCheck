@@ -21,8 +21,7 @@
 
 - Path of exile for Steam in GFN
 
-(Alternatively to theGFNPoEPriceCheck.exe you can run the script GFNPoEPriceCheck.au3 then you need Autoit
-https://www.autoitscript.com/site/autoit/downloads/ ) 
+- (Alternatively to the GFNPoEPriceCheck.exe you can run the script GFNPoEPriceCheck.au3 then you need Autoit https://www.autoitscript.com/site/autoit/downloads/ ) 
 
 
 Features:
