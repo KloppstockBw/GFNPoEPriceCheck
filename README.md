@@ -24,12 +24,12 @@
 ### Features
 
 - No need to change Awakened PoE Trade settings
-- Copy Item Details in background
-- config file in documents/mygames/Path Of EXILE containing
+- Copy Item Details in background (except in GeForce NOW) 
+- config file in documents/mygames/Path Of EXILE containing:
   - URL to google.docs
   - Mouse position to paste item details in GFN
   - Auto start awakened Poe trade if wanted
-- more to come
+- more to come - I welcome any ideas
 
 ### Install
 **Video Guide** will come soon
