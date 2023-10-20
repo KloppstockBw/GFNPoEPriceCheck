@@ -1,7 +1,7 @@
 # ![Awakener's Orb](https://web.poecdn.com/image/Art/2DItems/Currency/TransferOrb.png) Geforce NOW **bridge** for Awakened PoE Trade
 
 ![kHBPqWXHkQ31](https://github.com/KloppstockBw/GFNPoEPriceCheck/assets/147773628/7cce82ba-5422-4154-abbd-789d80afc0a1)
-![reddit]  (https://www.reddit.com/r/pathofexile/comments/17cktr0/awakened_poe_trade_on_geforce_now/?utm_source=share&utm_medium=mweb) 
+https://www.reddit.com/r/pathofexile/comments/17cktr0/awakened_poe_trade_on_geforce_now/?utm_source=share&utm_medium=mweb
 
 ### Hotkey Usage
 
