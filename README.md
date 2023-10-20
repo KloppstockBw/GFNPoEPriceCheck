@@ -36,7 +36,8 @@
 - more to come - I welcome any ideas
 
 ### Install
-**Video Guide** will come soon
+**Video Guide** 
+https://www.youtube.com/watch?v=K87GRUXJLl0
 
 1. Create a https://docs.google.com/document/create document and activate share to everyone.
 2. Run awakened PoE trade
