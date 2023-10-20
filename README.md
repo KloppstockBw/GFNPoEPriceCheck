@@ -47,6 +47,10 @@
 8. tell the script your docs.google URL
 9. Have fun price checking in GeForce NOW
 
+### to do 
+- troubleshooting
+- Gui to change config and stuff
+  
 ### How it works - short story
 
 - it asks the user for various inputs and safes them to config file
