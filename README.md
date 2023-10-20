@@ -37,14 +37,14 @@
 ### Install
 **Video Guide** will come soon
 
-1. Create a https://docs.google.com/document/create document and share it to everyone so it shows /edit at the end in URL.
-2. Change default Website in Steam overlay to the created docs.google.com URL .
-3. Set Steam overlay default key to F7
-4. Run awakened PoE trade
-5. Run GFNPoEPriceCheck
-6. Decide in script if you want to autorun awakened on script start (recommended)
-7. Show the script where the awakened PoE trade input field is
-8. tell the script your docs.google URL
+1. Create a https://docs.google.com/document/create document and activate share to everyone.
+2. Run awakened PoE trade
+3. Run GFNPoEPriceCheck
+4. Decide in script if you want to autorun awakened on script start (recommended)
+5. Show the script where the awakened PoE trade input field is
+6. tell the script your docs.google URL
+7. Change default Website in Steam overlay to the created docs.google.com URL .
+8. Set Steam overlay default key to F7
 9. Have fun price checking in GeForce NOW
 
 ### to do 
