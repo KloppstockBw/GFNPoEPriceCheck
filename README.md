@@ -4,7 +4,7 @@
 # ![Awakener's Orb](https://web.poecdn.com/image/Art/2DItems/Currency/TransferOrb.png) Geforce NOW **bridge** for Awakened PoE Trade
 
 
-![]([https://gcdnb.pbrd.co/images/kHBPqWXHkQ31.png) 
+![]([https://gcdnb.pbrd.co/images/kHBPqWXHkQ31.jpg) 
 
 ### Hotkey Usage
 
