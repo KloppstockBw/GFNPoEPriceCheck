@@ -7,26 +7,14 @@
 
 | Gem | Rare | Unique | Currency |
 |-----|------|--------|----------|
-| ![](https://i.imgur.com/LTsH2DZ.png) | ![](https://i.imgur.com/2XL5Wl8.png) | ![](https://i.imgur.com/UTV6prE.png) | ![](https://i.imgur.com/dQ9Sns6.png) |
+| ![](https:// | 
 
 ### Development
 
 Follow instructions similar to CI [.github/workflows/main.yml](https://github.com/SnosMe/awakened-poe-trade/blob/master/.github/workflows/main.yml)
 
-### Acknowledgments
+### Requirements
 
-- [libuiohook](https://github.com/kwhat/libuiohook)
-- [RePoE](https://github.com/brather1ng/RePoE)
-- [poeprices.info](https://www.poeprices.info/)
-- [poe.ninja](https://poe.ninja/)
-
-![](https://i.imgur.com/MATqhv7.png)
-
-.
-
-.
-
-Requirements:
 Autoit - https://www.autoitscript.com/site/autoit/downloads/
 
 Awakened POE Trade - https://github.com/SnosMe/awakened-poe-trade
