@@ -1,7 +1,7 @@
 # ![Awakener's Orb](https://web.poecdn.com/image/Art/2DItems/Currency/TransferOrb.png) Geforce NOW bridge for Awakened PoE Trade
 
 
-➡ [Download for Windows & Linux](https://snosme.github.io/awtrade/download) ⬅
+➡  ⬅
 
 ## Tool showcase
 
@@ -14,6 +14,9 @@
 Follow instructions similar to CI [.github/workflows/main.yml](https://github.com/SnosMe/awakened-poe-trade/blob/master/.github/workflows/main.yml)
 
 ### Requirements
+
+GFNPoEPriceCheck.exe
+Alternativly you can run the GFNPoEPriceCheck.au3 then you need autoit
 
 Autoit - https://www.autoitscript.com/site/autoit/downloads/
 
