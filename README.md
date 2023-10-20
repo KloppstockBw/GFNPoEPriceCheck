@@ -14,13 +14,13 @@
 
 ### Requirements
 
-GFNPoEPriceCheck.exe
+#GFNPoEPriceCheck.exe
 
-Awakened POE Trade - https://github.com/SnosMe/awakened-poe-trade
+#Awakened POE Trade - https://github.com/SnosMe/awakened-poe-trade
 
-Path of exile for Steam in GFN
+#Path of exile for Steam in GFN
 
-(Alternativly you can run the script GFNPoEPriceCheck.au3 then you need Autoit
+(Alternatively to theGFNPoEPriceCheck.exe you can run the script GFNPoEPriceCheck.au3 then you need Autoit
 https://www.autoitscript.com/site/autoit/downloads/ ) 
 
 
