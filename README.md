@@ -1,4 +1,4 @@
-# ![Awakener's Orb](https://web.poecdn.com/image/Art/2DItems/Currency/TransferOrb.png) Awakened PoE Trade for Geforce NOW
+# ![Awakener's Orb](https://web.poecdn.com/image/Art/2DItems/Currency/TransferOrb.png) Geforce NOW bridge for Awakened PoE Trade
 
 
 ➡ [Download for Windows & Linux](https://snosme.github.io/awtrade/download) ⬅
