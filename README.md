@@ -11,7 +11,6 @@
 
 ### Development
 
-Follow instructions similar to CI [.github/workflows/main.yml](https://github.com/SnosMe/awakened-poe-trade/blob/master/.github/workflows/main.yml)
 
 ### Requirements
 
