@@ -39,7 +39,16 @@
 3. Set Steam overlay default key to F7
 4. Run awakened PoE trade
 5. Run GFNPoEPriceCheck
-4.1 Decide in script if you want to autorun awakened on script start (recommended)
-4.2 Show the script where the awakened PoE trade field is
-4.3 tell the script your docs.google URL
-6. Have fun price checking in GeForce NOW
+6. Decide in script if you want to autorun awakened on script start (recommended)
+7. Show the script where the awakened PoE trade field is
+8. tell the script your docs.google URL
+9. Have fun price checking in GeForce NOW
+
+### How it works - short story
+
+- it asks the user for various inputs and safes them to config file
+- if the config files contains value it skips the inputs
+- in gfn it sends the item details to the steam build in browser where the home page is set to the docs google by the user
+- on local PC the scrips reads the docs google site content and copy it to the clipboard
+- the scrips renames the gfn window to "Path of exile" so the awakened tool detects it as poe
+- finally the scripts copys the data to awakened inside of gfn poe
