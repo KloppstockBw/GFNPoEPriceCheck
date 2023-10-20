@@ -3,11 +3,11 @@
 
 ➡  ⬅
 
-## Tool showcase
+## Usage
 
-| Gem | Rare | Unique | Currency |
+| F5 | F6 | F7 | F11 |
 |-----|------|--------|----------|
-| ![](https:// | 
+| goto hideout | price check (hover mouse over the item) | open steam overlay | force close script |
 
 ### Development
 
@@ -19,7 +19,7 @@
 - Awakened POE Trade
   https://github.com/SnosMe/awakened-poe-trade
 
-- Path of exile for Steam in GFN
+- Path of exile for **Steam** in Geforce NOW (GGG Version does not work) 
 
 - (Alternatively to the GFNPoEPriceCheck.exe you can run the script GFNPoEPriceCheck.au3 then you need Autoit https://www.autoitscript.com/site/autoit/downloads/ ) 
 
@@ -27,8 +27,10 @@
 Features:
 - No need to change Awakened PoE Trade settings
 - Copy Item Details in background
-- Setup Wizard
-- Auto Start awakened PoE Trade
+- config file in documents/mygames/Path Of EXILE containing
+  - URL to google.docs
+  - Mouse position to paste item details in GFN
+  - 
 - more to come
 
 Install:
@@ -38,17 +40,3 @@ Install:
 4. You dont need to change settings in Awakened PoE Trade anymore. If you changed the Window title then please revert back to "Path of Exile"
 5. Run script. 
    The first price check after running the script takes 10 sek because the docs.google.com takes some time to be loaded inside gfn  
-
-Usage:
-
-
-F5 = Goto hideout 
-
-F6 = price check (hover mouse over the item) 
-
-F7 = open steam overlay (not needed for this script) 
-
-F9 = Respond to last whisper with thanks 
-
-F11 = force close script 
-
