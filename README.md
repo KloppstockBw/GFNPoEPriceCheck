@@ -15,13 +15,14 @@
 ### Requirements
 
 GFNPoEPriceCheck.exe
-Alternativly you can run the GFNPoEPriceCheck.au3 then you need autoit
-
-Autoit - https://www.autoitscript.com/site/autoit/downloads/
 
 Awakened POE Trade - https://github.com/SnosMe/awakened-poe-trade
 
 Path of exile for Steam in GFN
+
+(Alternativly you can run the script GFNPoEPriceCheck.au3 then you need Autoit
+https://www.autoitscript.com/site/autoit/downloads/ ) 
+
 
 Features:
 - No need to change Awakened PoE Trade settings
