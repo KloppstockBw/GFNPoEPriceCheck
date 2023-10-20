@@ -1,7 +1,3 @@
-
-# under construction - will be finished until November 2023
-
-
 # ![Awakener's Orb](https://web.poecdn.com/image/Art/2DItems/Currency/TransferOrb.png) Geforce NOW **bridge** for Awakened PoE Trade
 
 ![kHBPqWXHkQ31](https://github.com/KloppstockBw/GFNPoEPriceCheck/assets/147773628/7cce82ba-5422-4154-abbd-789d80afc0a1)
