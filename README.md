@@ -12,15 +12,14 @@ https://www.reddit.com/r/pathofexile/comments/17cktr0/awakened_poe_trade_on_gefo
 
 ### Requirements
 
-- GFNPoEPriceCheck.exe
-
+- GFNPoEPriceCheck.au3 (Alternativly the .exe but you will get smartscreen warning, because i won't buy a certificate to sign the exe as trusted)
+  
+- Autoit https://www.autoitscript.com/site/autoit/downloads/
+  
 - Awakened POE Trade
   https://github.com/SnosMe/awakened-poe-trade
 
 - Path of exile for **Steam** in Geforce NOW (GGG Version does not work) 
-
-- (Alternatively to the GFNPoEPriceCheck.exe you can run the script GFNPoEPriceCheck.au3 then you need Autoit https://www.autoitscript.com/site/autoit/downloads/ ) 
-
 
 ### Features
 
