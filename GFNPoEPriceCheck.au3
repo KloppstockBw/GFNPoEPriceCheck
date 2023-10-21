@@ -21,7 +21,7 @@
 ;_____________________
 
 
-Global $VersionL = "20231022A"
+
 Global $searchString = '"ty":"is","ibi":1,"s":"'
 Global $sUserName = @UserName
 Global $sDirPath = "C:\Users\" & $sUserName & "\Documents\My Games\Path of Exile"
@@ -30,9 +30,11 @@ Global $aKoordinaten = 0
 Global $counter = 0 
 Global $counterwindow = 300
 Global $sURL = 0
-Global $URLau3 = "https://github.com/KloppstockBw/GFNPoEPriceCheck/blob/main/TestScript.au3"
+Global $URLau3 = "https://github.com/KloppstockBw/GFNPoEPriceCheck/blob/main/GFNPoEPriceCheck.au3"
+Global $VersionL = "20231022A"
 Global $updateChecked = False
 Global $WEBSITE, $UPDATE
+
 
 Updater()
 AutorunAwakened()
@@ -163,7 +165,7 @@ Func Updater()
     WEnd
     ProcessClose($iPID2)
     If StringLen($sContent2) > 0 Then
-        Local $sSearchText2 = "$VersionL = "
+        Local $sSearchText2 = '$VersionL = \"'
         Local $iStartPos2 = StringInStr($sContent2, $sSearchText2)
         If $iStartPos2 > 0 Then
             $VersionG = StringMid($sContent2, $iStartPos2 + StringLen($sSearchText2), 9)
