@@ -8,7 +8,7 @@
 #include <GUIConstantsEx.au3>
 #include <WindowsConstants.au3>
 #include <WinAPI.au3>
-Global $VersionL = 20231021C
+Global $VersionL = 20231021A
 Global $searchString = '"ty":"is","ibi":1,"s":"'
 Global $sUserName = @UserName
 Global $sDirPath = "C:\Users\" & $sUserName & "\Documents\My Games\Path of Exile"
