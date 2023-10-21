@@ -21,7 +21,7 @@
 ;_____________________
 
 
-
+Global $VersionL = "20231022A"
 Global $searchString = '"ty":"is","ibi":1,"s":"'
 Global $sUserName = @UserName
 Global $sDirPath = "C:\Users\" & $sUserName & "\Documents\My Games\Path of Exile"
@@ -31,7 +31,6 @@ Global $counter = 0
 Global $counterwindow = 300
 Global $sURL = 0
 Global $URLau3 = "https://github.com/KloppstockBw/GFNPoEPriceCheck/blob/main/TestScript.au3"
-Global $VersionL = "20231022A"
 Global $updateChecked = False
 Global $WEBSITE, $UPDATE
 
