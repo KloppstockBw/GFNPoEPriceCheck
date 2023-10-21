@@ -1,4 +1,3 @@
-;RelVersion:20231021B
 ;https://www.reddit.com/r/pathofexile/comments/17cktr0/awakened_poe_trade_on_geforce_now/
 ;by KloppstockBW
 #include <AutoItConstants.au3>
@@ -9,6 +8,7 @@
 #include <GUIConstantsEx.au3>
 #include <WindowsConstants.au3>
 #include <WinAPI.au3>
+Glboal $sVersionGH = $20231021B
 Global $searchString = '"ty":"is","ibi":1,"s":"'
 Global $sUserName = @UserName
 Global $sDirPath = "C:\Users\" & $sUserName & "\Documents\My Games\Path of Exile"
