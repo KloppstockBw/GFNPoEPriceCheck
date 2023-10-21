@@ -1,3 +1,6 @@
+;Version:20231021A
+;https://www.reddit.com/r/pathofexile/comments/17cktr0/awakened_poe_trade_on_geforce_now/
+;by KloppstockBW
 #include <AutoItConstants.au3>
 #include <ClipBoard.au3>
 #include <String.au3>
