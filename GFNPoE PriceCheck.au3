@@ -30,8 +30,12 @@ Global $aKoordinaten = 0
 Global $counter = 0 
 Global $counterwindow = 300
 Global $sURL = 0
+Global $URLau3 = "https://github.com/KloppstockBw/GFNPoEPriceCheck/blob/main/TestScript.au3"
+Global $VersionL = "20231021A"
+Global $updateChecked = False
+Global $WEBSITE, $UPDATE
 
-
+Updater()
 AutorunAwakened()
 awakenedrunning()
 configMaus()
@@ -140,6 +144,67 @@ Func ConfigURL()
 	$sURL = IniRead($sIniFile, "docsGoogleURL", "URL", "")
 EndFunc	
 
+
+
+Func Updater()
+    If $updateChecked Then
+        Return
+    EndIf
+    Local $updateLater = False
+    Local $hGUI
+    Local $sContent2 = ""
+    Local $iPID2 = Run(@ComSpec & ' /c curl -s -k "' & $URLau3 & '"', "", @SW_HIDE, $STDOUT_CHILD)
+    If $iPID2 = 0 Then
+        MsgBox($MB_SYSTEMMODAL, "Error", "Error starting curl.")
+        Exit
+    EndIf
+    While 1
+        $sContent2 &= StdoutRead($iPID2)
+        If @error Then ExitLoop
+    WEnd
+    ProcessClose($iPID2)
+    If StringLen($sContent2) > 0 Then
+        Local $sSearchText2 = "$VersionL = "
+        Local $iStartPos2 = StringInStr($sContent2, $sSearchText2)
+        If $iStartPos2 > 0 Then
+            $VersionG = StringMid($sContent2, $iStartPos2 + StringLen($sSearchText2), 9)
+        Else
+            MsgBox($MB_SYSTEMMODAL, "Error", "Text 'RelVersion:' not found.")
+        EndIf
+    Else
+        MsgBox($MB_SYSTEMMODAL, "Error", "Error retrieving webpage content.")
+    EndIf
+    If $VersionL = $VersionG Then
+    Else
+        $updateLater = True
+        $hGUI = CreateGUI()
+    EndIf
+    If $updateLater Then
+        While 1
+            $imsg = GUIGetMsg()
+            Switch $imsg
+                Case $GUI_EVENT_CLOSE
+                    Exit
+                Case $WEBSITE
+                    ShellExecute("https://github.com/KloppstockBw/GFNPoEPriceCheck/")
+                    Exit
+                Case $UPDATE
+                    ExitLoop
+            EndSwitch
+        WEnd
+    EndIf
+    GUIDelete($hGUI)
+    $updateChecked = True
+EndFunc
+
+Func CreateGUI()
+    Local $hGUI = GUICreate("Update Available", 400, 100)
+    GUICtrlCreateLabel("There is a new version for the script on Github." & @CRLF & "Do you want to download the latest version?", 10, 10, 380, 50)
+    $WEBSITE = GUICtrlCreateButton("Open Github", 50, 55, 150, 30)
+    $UPDATE = GUICtrlCreateButton("Update Later", 210, 55, 150, 30)
+    GUISetState()
+    Return $hGUI
+EndFunc
 
 ; Macros   
 	
