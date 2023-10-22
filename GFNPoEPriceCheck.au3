@@ -32,7 +32,7 @@ Global $counter = 0
 Global $counterwindow = 300
 Global $sURL = 0
 Global $URLau3 = "https://github.com/KloppstockBw/GFNPoEPriceCheck/blob/main/GFNPoEPriceCheck.au3"
-Global $VersionL = "20231023A"
+Global $VersionL = "20231023B"
 Global $updateChecked = False
 Global $WEBSITE, $UPDATE
 Global $ty = "thanks and good luck"
@@ -249,6 +249,9 @@ EndFunc
 
 	Func copyItem()
 		If Not WinActive("Path of Exile") Then Return
+		If $sURL = 0 Then 
+		$sURL = IniRead($sIniFile, "docsGoogleURL", "URL", "")
+		EndIf
 		$counter = $counter +1
 		$sMausKoordinaten = IniRead($sIniFile, "AwakenedPasteWindow", "Koordinaten", "-1,-1")
 	    $aKoordinaten = StringSplit($sMausKoordinaten, ',')
