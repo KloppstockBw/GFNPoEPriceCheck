@@ -7,7 +7,7 @@ https://www.reddit.com/r/pathofexile/comments/17cktr0/awakened_poe_trade_on_gefo
 ### Hotkey Usage
 
 | F5 | F6 | F7 | F9 | | F11 |
-|-----|------|--------|----------|
+|-----|------|--------|----------||----------|
 | goto hideout | price check | open steam overlay | send thanks in local chat | | force close script |
 
 ### Requirements
