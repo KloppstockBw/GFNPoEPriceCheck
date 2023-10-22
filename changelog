@@ -1,5 +1,6 @@
 ### Changelog
-20231022A - added update checker
+20231023A   - readded lastly
+            - AutorunAwakened() had a wrong path
+            - Added GUI after setup to show how to use
 
-tba         readded lastly
-            AutorunAwakened() had a wrong path
+20231022A   - added update checker
