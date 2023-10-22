@@ -14,7 +14,7 @@ https://www.reddit.com/r/pathofexile/comments/17cktr0/awakened_poe_trade_on_gefo
 
 - GFNPoEPriceCheck.au3 (Alternatively the .exe, but you get a smartscreen warning the first run because I'm not buying a certificate to sign the exe as trustworthy)
   
-- Autoit https://www.autoitscript.com/site/autoit/downloads/
+- Autoit (if you use the .au3 Version) https://www.autoitscript.com/site/autoit/downloads/
   
 - Awakened POE Trade
   https://github.com/SnosMe/awakened-poe-trade
