@@ -14,6 +14,7 @@
 
 	HotKeySet("{F6}", "copyItem") 		; Price check on current ITEM
 	HotKeySet("{F5}", "gotoHideout")	; Goto HO
+	HotKeySet("{F9}", "lasty")				; Sends thanks and good luck in local chat
 	HotKeySet("{F11}", "ExitScript")	; Force stop script
 	
 	$sleeper 	= 500 							;Time to wait that google saved the docs in cloud. Can be lowered or increased to customize script , def: 500 (0,5 sec)
@@ -31,9 +32,11 @@ Global $counter = 0
 Global $counterwindow = 300
 Global $sURL = 0
 Global $URLau3 = "https://github.com/KloppstockBw/GFNPoEPriceCheck/blob/main/GFNPoEPriceCheck.au3"
-Global $VersionL = "20231022A"
+Global $VersionL = "20231023A"
 Global $updateChecked = False
 Global $WEBSITE, $UPDATE
+Global $ty = "thanks and good luck"
+Global $SetupStatus
 
 
 Updater()
@@ -41,6 +44,7 @@ AutorunAwakened()
 awakenedrunning()
 configMaus()
 ConfigURL()
+Setup()
 
 While 1
 	Sleep(100)
@@ -51,12 +55,20 @@ EndIf
   $counterwindow = $counterwindow + 1
 WEnd
 
+Func Setup()
+	 If IniRead($sIniFile, "Setup Done", "Status", $SetupStatus) = 1 Then
+		Return
+	Else
+	MsgBox(48, "You are ready to go!", "Setup is done and you can start playing now!" & @CRLF &  @CRLF &"Press in PoE GFN the Hotkey:" & @CRLF & @CRLF &  "F5 - go to hideout "& @CRLF &  "F6 - price check of item"& @CRLF &  "F9 - write " & $ty & " in local chat" & @CRLF &  "F11 - Force Close script" & @CRLF & @CRLF & "If you face any issues then please delete the config file at:"& @CRLF &$sIniFile)
+	IniWrite($sIniFile, "Setup Done", "Status", 1)
+	EndIf
+EndFunc	
 
 Func AutorunAwakened()
 	If Not FileExists($sIniFile) Or IniRead($sIniFile, "AwakenedPath", "ExePath", "") = "" Then
 		Local $iResponse = MsgBox($MB_YESNO, "Auto Start Awakened POE Trade", "Do you want me to start Awakened PoE Trade automatically when the script is executed?")
 		If $iResponse = $IDYES Then
-			Local $sFile = FileOpenDialog("Choose Awakened PoE Trade.exe", "C:\Users\pjw\AppData\Local\Programs\Awakened PoE Trade", "Awakened PoE Trade.exe (*.exe)", $FD_FILEMUSTEXIST)
+			Local $sFile = FileOpenDialog("Choose Awakened PoE Trade.exe", "C:\Users\" & $sUserName & "\AppData\Local\Programs\Awakened PoE Trade", "Awakened PoE Trade.exe (*.exe)", $FD_FILEMUSTEXIST)
 			If @error Then
 				MsgBox($MB_SYSTEMMODAL, "Cancel", "You will be reasked on next script start")
 			Else
@@ -110,7 +122,9 @@ Func configMaus()
 		;WinActivate($Form1)
                 MsgBox(0, "Show me where the Awakened PoE Trade Field is", "Now you have to show me where to put the item details in Awakened PoE Trade, unfortunately I can't read that information." & @CRLF & @CRLF & "Click with the left mouse button in the upper left corner on the input field where it says" & @CRLF & @CRLF & "Price Check (Ctrl + V)." & @CRLF & @CRLF & "It starts as soon as you click on ok.")
 		WinActivate($Form1)
+		Sleep(50)
 		Send("+{SPACE}")
+		Sleep(100)
     If WinActive("Awakened PoE Trade") Then
         While 1
             If _IsPressed("01") Then
@@ -136,16 +150,18 @@ Func _IsPressed($sHexKey)
 EndFunc
 
 Func ConfigURL()
-	If IniRead($sIniFile, "docsGoogleURL", "URL", "") <> "" And IniRead($sIniFile, "docsGoogleURL", "URL", "") <> "https://docs.google.com *** /edit" Then	
-	$sURL = IniRead($sIniFile, "docsGoogleURL", "URL", "")
-	Else
-    $input = InputBox("docs.google URL", "Please enter your docs.google URL here"& @CRLF & @CRLF & "Please make sure that anyone can edit this document because you can't login to google in GeForce NOW. Keep the link private!", "https://docs.google.com *** /edit")
-    If StringRight($input, 4) = "edit" Then IniWrite($sIniFile, "docsGoogleURL", "URL", $input)
-	EndIf
-	$sURL = IniRead($sIniFile, "docsGoogleURL", "URL", "")
-EndFunc	
-
-
+    Local $sURL = IniRead($sIniFile, "docsGoogleURL", "URL", "")
+    While $sURL = "" Or $sURL = "https://docs.google.com *** /edit"
+        $input = InputBox("docs.google URL", "Please enter your docs.google URL here" & @CRLF & @CRLF & "Please make sure that anyone can edit this document because you can't log in to Google in GeForce NOW. Keep the link private!", "https://docs.google.com *** /edit")
+        If @error = 1 Then ; User pressed the Cancel button
+			MsgBox(16, "Missing URL input", "You must enter a valid URL. Script will close now!")
+            Exit ; Beende das Script, wenn der Benutzer "Cancel" drückt.
+        ElseIf StringRight($input, 4) = "edit" Then
+            IniWrite($sIniFile, "docsGoogleURL", "URL", $input)
+            $sURL = $input
+        EndIf
+    WEnd
+EndFunc
 
 Func Updater()
     If $updateChecked Then
@@ -214,15 +230,15 @@ EndFunc
 	EndFunc
 
 
-#cs
+
 	Func lasty()
 		If Not WinActive("Path of Exile") Then Return
 		Send("^{ENTER}")
+		Send("^a")
+		Sleep(20)
 		Send($ty)
 		Send("{ENTER}")
 	EndFunc
-#ce
-
 
 	Func gotoHideout()
 		If Not WinActive("Path of Exile") Then Return
