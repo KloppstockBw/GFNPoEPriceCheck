@@ -1,4 +1,5 @@
 ### Changelog
+20231023A   - F6 did not work anymore
 20231023A   - readded lastly
             - AutorunAwakened() had a wrong path
             - Added GUI after setup to show how to use
