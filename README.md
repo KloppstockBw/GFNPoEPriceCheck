@@ -12,8 +12,8 @@ https://www.reddit.com/r/pathofexile/comments/17cktr0/awakened_poe_trade_on_gefo
 
 ### Requirements
 
--  [GFNPoEPriceCheck.au3](https://www.google.com "Google's Homepage")
-  (Alternatively the [GFNPoEPriceCheck.exe](https://www.google.com "Google's Homepage") , but you get a smartscreen warning the first run because I'm not going to buy a certificate to sign the exe as trustworthy)
+-  [GFNPoEPriceCheck.au3](Https://github.com/KloppstockBw/GFNPoEPriceCheck/blob/main/GFNPoEPriceCheck.au3")
+  (Alternatively the [GFNPoEPriceCheck.exe](https://github.com/KloppstockBw/GFNPoEPriceCheck/blob/main/GFNPoEPriceCheck.exe") , but you get a smartscreen warning the first run because I'm not going to buy a certificate to sign the exe as trustworthy)
   
 - Autoit (Only if you use the .au3 Version) https://www.autoitscript.com/site/autoit/downloads/
   
