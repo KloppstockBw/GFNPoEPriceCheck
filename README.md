@@ -28,6 +28,8 @@ https://www.reddit.com/r/pathofexile/comments/17cktr0/awakened_poe_trade_on_gefo
 - Copy Item Details in background (except in GeForce NOW) 
 - config file in documents/mygames/Path Of EXILE containing:
   - URL to google.docs
+  - setup status done
+  - F9 message with standard value for thanks
   - Mouse position to paste item details in GFN
   - Auto start awakened Poe trade if wanted
 - more to come - I welcome any ideas
