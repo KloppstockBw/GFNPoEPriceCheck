@@ -1,3 +1,10 @@
+; Hope you enjoy using my script
+; Please note that i'm a hobby programmer 
+; If you have questions or find bugs you can leave a comment on reddit or write an issue on github
+; https://www.reddit.com/r/pathofexile/comments/17cktr0/awakened_poe_trade_on_geforce_now/
+; https://github.com/KloppstockBw/GFNPoEPriceCheck
+
+
 #include <AutoItConstants.au3>
 #include <ClipBoard.au3>
 #include <String.au3>
@@ -6,23 +13,6 @@
 #include <GUIConstantsEx.au3>
 #include <WindowsConstants.au3>
 #include <WinAPI.au3>
-
-
-;_____________________
-;Change this if Required:
-;_____________________
-
-	HotKeySet("{F6}", "copyItem") 		; Price check on current ITEM
-	HotKeySet("{F5}", "gotoHideout")	; Goto HO
-	HotKeySet("{F9}", "lasty")				; Sends thanks and good luck in local chat
-	HotKeySet("{F11}", "ExitScript")	; Force stop script
-	
-	$sleeper 	= 500 							;Time to wait that google saved the docs in cloud. Can be lowered or increased to customize script , def: 500 (0,5 sec)
-
-;_____________________
-
-
-
 Global $searchString = '"ty":"is","ibi":1,"s":"'
 Global $sUserName = @UserName
 Global $sDirPath = "C:\Users\" & $sUserName & "\Documents\My Games\Path of Exile"
@@ -32,12 +22,15 @@ Global $counter = 0
 Global $counterwindow = 300
 Global $sURL = 0
 Global $URLau3 = "https://github.com/KloppstockBw/GFNPoEPriceCheck/blob/main/GFNPoEPriceCheck.au3"
-Global $VersionL = "20231023B"
+Global $VersionL = "20231026A"
 Global $updateChecked = False
 Global $WEBSITE, $UPDATE
 Global $ty = "thanks and good luck"
-Global $SetupStatus
 
+	HotKeySet("{F6}", "copyItem") 		; Price check on current ITEM
+	HotKeySet("{F5}", "gotoHideout")	; Goto HO
+	HotKeySet("{F9}", "lasty")				; Sends thanks and good luck in local chat
+	HotKeySet("{F11}", "ExitScript")	; Force stop script
 
 Updater()
 AutorunAwakened()
@@ -47,21 +40,22 @@ ConfigURL()
 Setup()
 
 While 1
-	Sleep(100)
-	If $counterwindow = 300 Then
-    WindowRename()
-    $counterwindow = 0
+Sleep(100)
+If $counterwindow = 300 Then
+WindowRename()
+$counterwindow = 0
 EndIf
-  $counterwindow = $counterwindow + 1
+ $counterwindow += 1
 WEnd
 
 Func Setup()
-	 If IniRead($sIniFile, "Setup Done", "Status", $SetupStatus) = 1 Then
-		Return
-	Else
-	MsgBox(48, "You are ready to go!", "Setup is done and you can start playing now!" & @CRLF &  @CRLF &"Press in PoE GFN the Hotkey:" & @CRLF & @CRLF &  "F5 - go to hideout "& @CRLF &  "F6 - price check of item"& @CRLF &  "F9 - write " & $ty & " in local chat" & @CRLF &  "F11 - Force Close script" & @CRLF & @CRLF & "If you face any issues then please delete the config file at:"& @CRLF &$sIniFile)
-	IniWrite($sIniFile, "Setup Done", "Status", 1)
-	EndIf
+Local $SetupStatus = 0
+If IniRead($sIniFile, "Setup Done", "Status", $SetupStatus) = 1 Then
+Return
+Else
+MsgBox(48, "You are ready to go!", "Setup is done and you can start playing now!" & @CRLF &  @CRLF &"Press in PoE GFN the Hotkey:" & @CRLF & @CRLF &  "F5 - go to hideout "& @CRLF &  "F6 - price check of item"& @CRLF &  "F9 - write " & $ty & " in local chat" & @CRLF &  "F11 - Force Close script" & @CRLF & @CRLF & "If you face any issues then please delete the config file at:"& @CRLF &$sIniFile)
+IniWrite($sIniFile, "Setup Done", "Status", 1)
+EndIf
 EndFunc	
 
 Func AutorunAwakened()
@@ -110,17 +104,13 @@ WEnd
 EndFunc
 
 Func configMaus()
-	If Not FileExists($sDirPath) Then DirCreate($sDirPath)
-	$sMausKoordinaten = IniRead($sIniFile, "AwakenedPasteWindow", "Koordinaten", "-1,-1")
-	$aKoordinaten = StringSplit($sMausKoordinaten, ',')
-	If $sMausKoordinaten = "-1,-1" Or ($aKoordinaten[1] = 0 And $aKoordinaten[2] = 0) Then
-		Opt("GUIOnEventMode", 1) ;
+	$sMausKoordinaten = IniRead($sIniFile, "AwakenedPasteWindow", "Koordinaten", "")
+	If $sMausKoordinaten = 0 Then
+		Opt("GUIOnEventMode", 1)
 		$Form1 = GUICreate("Path of Exile", @DesktopWidth, @DesktopHeight, 0, 0, $WS_POPUP)
 		GUISetState(@SW_SHOWMAXIMIZED)
 		Sleep(200)
-		;Send("+{SPACE}")
-		;WinActivate($Form1)
-                MsgBox(0, "Show me where the Awakened PoE Trade Field is", "Now you have to show me where to put the item details in Awakened PoE Trade, unfortunately I can't read that information." & @CRLF & @CRLF & "Click with the left mouse button in the upper left corner on the input field where it says" & @CRLF & @CRLF & "Price Check (Ctrl + V)." & @CRLF & @CRLF & "It starts as soon as you click on ok.")
+		MsgBox(0, "Show me where the Awakened PoE Trade Field is", "Now you have to show me where to put the item details in Awakened PoE Trade, unfortunately I can't read that information." & @CRLF & @CRLF & "Click with the left mouse button in the upper left corner on the input field where it says" & @CRLF & @CRLF & "Price Check (Ctrl + V)." & @CRLF & @CRLF & "It starts as soon as you click on ok.")
 		WinActivate($Form1)
 		Sleep(50)
 		Send("+{SPACE}")
@@ -137,10 +127,13 @@ Func configMaus()
 		$sMausKoordinaten = $aMausPosition[0] & "," & $aMausPosition[1]
 		IniWrite($sIniFile, "AwakenedPasteWindow", "Koordinaten", $sMausKoordinaten)
 		GUISetState(@SW_HIDE, $Form1) 
-		MsgBox($MB_SYSTEMMODAL, "Coordinates Saved", "Coodinates saved to config file at " & $sIniFile & @CRLF & "X: " & $aMausPosition[0] & @CRLF & "Y: " & $aMausPosition[1])
+		MsgBox($MB_SYSTEMMODAL, "Coordinates Saved", "Coordinates saved to config file at " & $sIniFile & @CRLF & "X: " & $aMausPosition[0] & @CRLF & "Y: " & $aMausPosition[1])
 	EndIf
-
+	Sleep(500)	
+Global $sMausKoordinaten = StringSplit(( IniRead($sIniFile, "AwakenedPasteWindow", "Koordinaten", "-1,-1")), ',')
 EndFunc
+
+
 Func _IsPressed($sHexKey)
     Local $aResult = DllCall("user32.dll", "short", "GetAsyncKeyState", "int", '0x' & $sHexKey)
     If Not @error And BitAND($aResult[0], 0x8000) Then
@@ -153,27 +146,27 @@ Func ConfigURL()
     Local $sURL = IniRead($sIniFile, "docsGoogleURL", "URL", "")
     While $sURL = "" Or $sURL = "https://docs.google.com *** /edit"
         $input = InputBox("docs.google URL", "Please enter your docs.google URL here" & @CRLF & @CRLF & "Please make sure that anyone can edit this document because you can't log in to Google in GeForce NOW. Keep the link private!", "https://docs.google.com *** /edit")
-        If @error = 1 Then ; User pressed the Cancel button
+        If @error = 1 Then 
 			MsgBox(16, "Missing URL input", "You must enter a valid URL. Script will close now!")
-            Exit ; Beende das Script, wenn der Benutzer "Cancel" drückt.
+            Exit 
         ElseIf StringRight($input, 4) = "edit" Then
             IniWrite($sIniFile, "docsGoogleURL", "URL", $input)
             $sURL = $input
         EndIf
     WEnd
+	Sleep(500)
+	Global $sURL = IniRead($sIniFile, "docsGoogleURL", "URL", "")
 EndFunc
 
 Func Updater()
-    If $updateChecked Then
-        Return
-    EndIf
+    If $updateChecked Then Return
     Local $updateLater = False
     Local $hGUI
     Local $sContent2 = ""
     Local $iPID2 = Run(@ComSpec & ' /c curl -s -k "' & $URLau3 & '"', "", @SW_HIDE, $STDOUT_CHILD)
     If $iPID2 = 0 Then
-        MsgBox($MB_SYSTEMMODAL, "Error", "Error starting curl.")
-        Exit
+    MsgBox($MB_SYSTEMMODAL, "Error", "Error starting curl.")
+    Exit
     EndIf
     While 1
         $sContent2 &= StdoutRead($iPID2)
@@ -214,7 +207,7 @@ Func Updater()
     $updateChecked = True
 EndFunc
 
-Func CreateGUI()
+Func CreateGUI() ; FUNKTION INTEGIEREN?
     Local $hGUI = GUICreate("Update Available", 400, 100)
     GUICtrlCreateLabel("There is a new version for the script on Github." & @CRLF & "Do you want to download the latest version?", 10, 10, 380, 50)
     $WEBSITE = GUICtrlCreateButton("Open Github", 50, 55, 150, 30)
@@ -228,8 +221,6 @@ EndFunc
 	Func ExitScript()
 		Exit
 	EndFunc
-
-
 
 	Func lasty()
 		If Not WinActive("Path of Exile") Then Return
@@ -249,45 +240,46 @@ EndFunc
 
 	Func copyItem()
 		If Not WinActive("Path of Exile") Then Return
-		If $sURL = 0 Then 
-		$sURL = IniRead($sIniFile, "docsGoogleURL", "URL", "")
-		EndIf
-		$counter = $counter +1
-		$sMausKoordinaten = IniRead($sIniFile, "AwakenedPasteWindow", "Koordinaten", "-1,-1")
-	    $aKoordinaten = StringSplit($sMausKoordinaten, ',')
 		$savedMousePos = MouseGetPos()
 		Opt("SendKeyDelay", 150)
-		Sleep(100)
+		Sleep(50)
 		Send("!^c")
 		Send("{F7}")
-		Sleep(100)
-		If $counter < 2 Then MsgBox($MB_SYSTEMMODAL, "Waiting for google.docs", "Wait until you see the docs.google document is loaded. "& @CRLF & @CRLF &"Then press OK and repeat {F6} Price check on item.")
+		Sleep(150)
+		If $counter < 1 Then 
+		MsgBox($MB_SYSTEMMODAL, "Waiting for google.docs", "Wait until you see the docs.google document is loaded. "& @CRLF & @CRLF &"Then press OK and repeat {F6} Price check on item.")
 		Sleep(80)
-		If $counter < 2 Then Send("{ESC}")
-		If $counter < 2 Then Return
+		Send("{ESC}")
+		$counter += 1
+		Return
+		EndIf
 		Send("^a")
 		Send("^v")
 		Send("{ESC}")
-		Sleep($sleeper)
+		Local $i = 0
+		While 1
+		Sleep(50)
 		Local $iPID = Run("curl -s -k " & $sURL, "", @SW_HIDE, $STDOUT_CHILD)
 		ProcessWaitClose($iPID)
 		Local $output = StdoutRead($iPID)
-		ClipPut($output)
 		$startPos = StringInStr($output, $searchString) + StringLen($searchString)
 		$extractedText = StringMid($output, $startPos)
 		$position = StringInStr($extractedText, '"},{"ty')
 		$ClipboardText = StringLeft($extractedText, $position - 1)
-		$clipboardText = StringReplace($clipboardText, "\u0027", "'") 
-		$clipboardText = StringReplace($clipboardText, "â€”", "—")
-		$clipboardText = StringReplace($clipboardText, '\"', '"')
-		$clipboardText = StringReplace($clipboardText, "\n", @CRLF)
+		$clipboardText = StringReplace(StringReplace(StringReplace(StringReplace($ClipboardText, "\u0027", "'"), "â€”", "—"), '\"', '"'), "\n", @CRLF)
 		ClipPut($clipboardText)
+		If StringLeft($clipboardText, 4) = "ITEM" Then ExitLoop
+		$i += 1
+		If $i >= 50 Then
+        MsgBox(16, "Fehler", "Item Copy failed from docs.google!"& @CRLF &" Is this the correct docs.google site and anyone can write in it?: "& $sURL & @CRLF & @CRLF &"If yes, please contact KloppstockBW via github or reddit")
+        Return
+		EndIf
+		WEnd
 		Send("+{SPACE}")
-		MouseMove($aKoordinaten[1],$aKoordinaten[2], 0)
-		MouseClick("left", $aKoordinaten[1],$aKoordinaten[2])
-		Sleep(100)
+		MouseMove($sMausKoordinaten[1],$sMausKoordinaten[2], 0)
+		MouseClick("left", $sMausKoordinaten[1],$sMausKoordinaten[2])
+		Sleep(50)
 		Send("^v")
 		MouseMove($savedMousePos[0], $savedMousePos[1],0)
 		Opt("SendKeyDelay", 0)
-		
-EndFunc
+	EndFunc
