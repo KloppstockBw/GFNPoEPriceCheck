@@ -22,11 +22,12 @@ Global $counter = 0
 Global $counterwindow = 300
 Global $sURL = 0
 Global $URLau3 = "https://github.com/KloppstockBw/GFNPoEPriceCheck/blob/main/GFNPoEPriceCheck.au3"
-Global $VersionL = "20231026A"
+Global $VersionL = "20231030AA"
 Global $updateChecked = False
 Global $WEBSITE, $UPDATE
 Global $ty = "thanks and good luck"
-
+If Not FileExists($sDirPath) Then DirCreate($sDirPath)
+	
 	HotKeySet("{F6}", "copyItem") 		; Price check on current ITEM
 	HotKeySet("{F5}", "gotoHideout")	; Goto HO
 	HotKeySet("{F9}", "lasty")				; Sends thanks and good luck in local chat
@@ -114,7 +115,7 @@ Func configMaus()
 		WinActivate($Form1)
 		Sleep(50)
 		Send("+{SPACE}")
-		Sleep(100)
+		Sleep(500)
     If WinActive("Awakened PoE Trade") Then
         While 1
             If _IsPressed("01") Then
@@ -184,6 +185,7 @@ Func Updater()
     Else
         MsgBox($MB_SYSTEMMODAL, "Error", "Error retrieving webpage content.")
     EndIf
+	$VersionL = StringTrimRight($VersionL, 1)
     If $VersionL = $VersionG Then
     Else
         $updateLater = True
