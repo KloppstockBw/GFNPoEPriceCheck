@@ -1,6 +1,7 @@
 ### Changelog
 Tba         - New GUI
 
+20231105    - Hotkeys are now changable
 20231030A   - Updater only if necessary 
             - create folder poe in documents if not exist 
 20231026A   - Cleaned script
