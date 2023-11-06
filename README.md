@@ -6,7 +6,9 @@ https://www.reddit.com/r/pathofexile/comments/17cktr0/awakened_poe_trade_on_gefo
 
 ### Hotkey Usage
 
-All Hotkeys are changeable in script
+All Hotkeys are changeable in script - comfortable by a GUI
+
+The standard hotkeys are:
 
 | F5 | F6 | F7 | F9 | F11 |
 |-----|------|--------|----------|----------|
