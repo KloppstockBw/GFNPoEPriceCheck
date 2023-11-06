@@ -4,7 +4,8 @@
 ; https://www.reddit.com/r/pathofexile/comments/17cktr0/awakened_poe_trade_on_geforce_now/
 ; https://github.com/KloppstockBw/GFNPoEPriceCheck
 
-
+Opt("TrayMenuMode", 3)
+Opt("TrayOnEventMode", 1)
 #include <AutoItConstants.au3>
 #include <ClipBoard.au3>
 #include <String.au3>
@@ -13,6 +14,8 @@
 #include <GUIConstantsEx.au3>
 #include <WindowsConstants.au3>
 #include <WinAPI.au3>
+#include <TrayConstants.au3>
+#include <Inet.au3>
 Global $searchString = '"ty":"is","ibi":1,"s":"'
 Global $sUserName = @UserName
 Global $sDirPath = "C:\Users\" & $sUserName & "\Documents\My Games\Path of Exile"
@@ -22,17 +25,27 @@ Global $counter = 0
 Global $counterwindow = 300
 Global $sURL = 0
 Global $URLau3 = "https://github.com/KloppstockBw/GFNPoEPriceCheck/blob/main/GFNPoEPriceCheck.au3"
-Global $VersionL = "20231030AA"
+Global $VersionL = "20231105AA"
 Global $updateChecked = False
 Global $WEBSITE, $UPDATE
 Global $ty = "thanks and good luck"
+Global $HotKey1 = ""
+Global $HotKey2 = ""
+Global $HotKey3 = ""
+Global $HotKey4 = ""
+Global $HotKey5 = ""
 If Not FileExists($sDirPath) Then DirCreate($sDirPath)
-	
-	HotKeySet("{F6}", "copyItem") 		; Price check on current ITEM
-	HotKeySet("{F5}", "gotoHideout")	; Goto HO
-	HotKeySet("{F9}", "lasty")				; Sends thanks and good luck in local chat
-	HotKeySet("{F11}", "ExitScript")	; Force stop script
+If Not FileExists($sDirPath & "\GFNPoEPriceCheck.ico")Then InetGet("https://raw.githubusercontent.com/KloppstockBw/GFNPoEPriceCheck/main/favicon.ico", $sDirPath & "\GFNPoEPriceCheck.ico", $INET_FORCERELOAD)
 
+$trayItem = TrayCreateItem("Change Hotkeys")
+TrayItemSetOnEvent($trayItem, "ChangeHotkeys")
+$trayItem = TrayCreateItem("Reset Config")
+TrayItemSetOnEvent($trayItem, "ResetConfig")
+$trayItem = TrayCreateItem("Exit")
+TrayItemSetOnEvent($trayItem, "ExitScript")
+TraySetIcon($sDirPath & "\GFNPoEPriceCheck.ico")
+
+LoadHotkeysFromIni()
 Updater()
 AutorunAwakened()
 awakenedrunning()
@@ -49,12 +62,101 @@ EndIf
  $counterwindow += 1
 WEnd
 
+Func LoadHotkeysFromIni()
+    $HotKey1 = IniRead($sIniFile, "HotKey", "Key1", "{F7}")
+    HotKeySet($HotKey1, "HotKeyPressed1")
+    $HotKey2 = IniRead($sIniFile, "HotKey", "Key2", "{F6}")
+    HotKeySet($HotKey2, "copyItem")
+    $HotKey3 = IniRead($sIniFile, "HotKey", "Key3", "{F5}")
+    HotKeySet($HotKey3, "gotoHideout")
+    $HotKey4 = IniRead($sIniFile, "HotKey", "Key4", "{F9}")
+    HotKeySet($HotKey4, "lasty")
+    $HotKey5 = IniRead($sIniFile, "HotKey", "Key5", "{F11}")
+    HotKeySet($HotKey5, "ExitScript")
+	Local $Check = IniRead($sIniFile, "HotKey", "Key1", "")
+If $Check = "" Then ChangeHotkeys()
+EndFunc
+
+Func ChangeHotkeys()
+    Local $msg = MsgBox(4, "GFNPoEPriceCheck - HotKey", "Do you want to change the default script Hotkeys?"& @CRLF & @CRLF & "You can change it anytime by right clicking the tray icon")
+
+	If $msg = 6 Then
+        Local $gui = GUICreate("GFNPoEPriceCheck - HotKey", 300, 440)
+		GUISetIcon($sDirPath & "\GFNPoEPriceCheck.ico", -58, $gui)
+        GUICtrlSetFont(-1, 16, 800, 0, "Calibri", 5)
+   Local $combo1 = GUICtrlCreateCombo("", 10, 100, 260, 20)
+   GUICtrlCreateLabel("Choose the hotkey you would like to use", 10, 10)
+GUICtrlCreateLabel("Currently only functions buttons are usable", 10, 30)
+GUICtrlCreateLabel("You can change again by right-click on the icon in the tray", 10, 50)
+GUICtrlCreateLabel("Open Steam Overlay (needs to be set in steam ingame):", 10, 75)
+GUICtrlSetData($combo1, "{F1}|{F2}|{F3}|{F4}|{F5}|{F6}|{F7}|{F8}|{F9}|{F10}|{F11}|{F12}", $HotKey1)
+Local $combo2 = GUICtrlCreateCombo("", 10, 160, 260, 20)
+GUICtrlCreateLabel("Price Check in GFN:", 10, 135)
+GUICtrlSetData($combo2, "{F1}|{F2}|{F3}|{F4}|{F5}|{F6}|{F7}|{F8}|{F9}|{F10}|{F11}|{F12}", $HotKey2)
+Local $combo3 = GUICtrlCreateCombo("", 10, 220, 260, 20)
+GUICtrlCreateLabel("Go to Hideout:", 10, 195)
+GUICtrlSetData($combo3, "{F1}|{F2}|{F3}|{F4}|{F5}|{F6}|{F7}|{F8}|{F9}|{F10}|{F11}|{F12}", $HotKey3)
+Local $combo4 = GUICtrlCreateCombo("", 10, 280, 260, 20)
+GUICtrlCreateLabel("Local Chat Thanks:", 10, 255)
+GUICtrlSetData($combo4, "{F1}|{F2}|{F3}|{F4}|{F5}|{F6}|{F7}|{F8}|{F9}|{F10}|{F11}|{F12}", $HotKey4)
+Local $combo5 = GUICtrlCreateCombo("", 10, 340, 260, 20)
+GUICtrlCreateLabel("Force Close this macro:", 10, 315)
+GUICtrlSetData($combo5, "{F1}|{F2}|{F3}|{F4}|{F5}|{F6}|{F7}|{F8}|{F9}|{F10}|{F11}|{F12}", $HotKey5)
+Local $saveButton = GUICtrlCreateButton("Save", 40, 380, 90, 30)
+Local $cancelButton = GUICtrlCreateButton("Default", 170, 380, 90, 30)
+        GUISetState(@SW_SHOW, $gui)
+        While 1
+            Switch GUIGetMsg()
+                Case $GUI_EVENT_CLOSE
+                    ExitLoop
+                Case $cancelButton
+                    $HotKey1 = "{F7}"
+                    $HotKey2 = "{F6}"
+                    $HotKey3 = "{F5}"
+                    $HotKey4 = "{F9}"
+                    $HotKey5 = "{F11}"
+                    UpdateHotkeys()
+                    MsgBox(0, "Info", "The default hotkeys have been saved!")
+					MsgBox(0, "You are ready to go!", "Setup is done and you can start playing now!" & @CRLF & @CRLF & "Press in PoE GFN the Hotkey:" & @CRLF & @CRLF & $HotKey3 & " - go to hideout " & @CRLF & $HotKey2 & " - price check of item" & @CRLF & $HotKey4 & " - write " & $ty & " in local chat" & @CRLF & $HotKey5 & " - Force Close script" & @CRLF & @CRLF & "If you face any issues then please delete the config file at or right-click the tray icon:" & @CRLF & $sIniFile)
+                    ExitLoop
+                Case $saveButton
+                    $HotKey1 = GUICtrlRead($combo1)
+                    $HotKey2 = GUICtrlRead($combo2)
+                    $HotKey3 = GUICtrlRead($combo3)
+                    $HotKey4 = GUICtrlRead($combo4)
+                    $HotKey5 = GUICtrlRead($combo5)
+					MsgBox(0, "You are ready to go!", "Setup is done and you can start playing now!" & @CRLF & @CRLF & "Press in PoE GFN the Hotkey:" & @CRLF & @CRLF & $HotKey3 & " - go to hideout " & @CRLF & $HotKey2 & " - price check of item" & @CRLF & $HotKey4 & " - write " & $ty & " in local chat" & @CRLF & $HotKey5 & " - Force Close script" & @CRLF & @CRLF & "If you face any issues then please delete the config file at or right-click the tray icon:" & @CRLF & $sIniFile)
+                    UpdateHotkeys()
+                    MsgBox(0, "Info", "The hotkeys have been saved!")
+                    ExitLoop
+            EndSwitch
+        WEnd
+        GUIDelete($gui)
+    Else
+        UpdateHotkeys()
+    EndIf
+EndFunc
+
+Func UpdateHotkeys()
+    HotKeySet($HotKey1, "HotKeyPressed1")
+    HotKeySet($HotKey2, "HotKeyPressed2")
+    HotKeySet($HotKey3, "HotKeyPressed3")
+    HotKeySet($HotKey4, "HotKeyPressed4")
+    HotKeySet($HotKey5, "HotKeyPressed5")
+	iniWrite($sIniFile, "HotKey", "Key1", $HotKey1)
+    IniWrite($sIniFile, "HotKey", "Key2", $HotKey2)
+    IniWrite($sIniFile, "HotKey", "Key3", $HotKey3)
+    IniWrite($sIniFile, "HotKey", "Key4", $HotKey4)
+	IniWrite($sIniFile, "HotKey", "Key5", $HotKey5)
+	LoadHotkeysFromIni()
+EndFunc
+
 Func Setup()
 Local $SetupStatus = 0
 If IniRead($sIniFile, "Setup Done", "Status", $SetupStatus) = 1 Then
 Return
 Else
-MsgBox(48, "You are ready to go!", "Setup is done and you can start playing now!" & @CRLF &  @CRLF &"Press in PoE GFN the Hotkey:" & @CRLF & @CRLF &  "F5 - go to hideout "& @CRLF &  "F6 - price check of item"& @CRLF &  "F9 - write " & $ty & " in local chat" & @CRLF &  "F11 - Force Close script" & @CRLF & @CRLF & "If you face any issues then please delete the config file at:"& @CRLF &$sIniFile)
+MsgBox(48, "You are ready to go!", "Setup is done and you can start playing now!" & @CRLF & @CRLF & "Press in PoE GFN the Hotkey:" & @CRLF & @CRLF & $HotKey3 & " - go to hideout " & @CRLF & $HotKey2 & " - price check of item" & @CRLF & $HotKey4 & " - write " & $ty & " in local chat" & @CRLF & $HotKey5 & " - Force Close script" & @CRLF & @CRLF & "If you face any issues then please delete the config file at or right-click the tray icon:" & @CRLF & $sIniFile)
 IniWrite($sIniFile, "Setup Done", "Status", 1)
 EndIf
 EndFunc	
@@ -190,6 +292,7 @@ Func Updater()
     Else
         $updateLater = True
         $hGUI = CreateGUI()
+		GUISetIcon($sDirPath & "\GFNPoEPriceCheck.ico", -58, $hGUI)
     EndIf
     If $updateLater Then
         While 1
@@ -218,6 +321,25 @@ Func CreateGUI() ; FUNKTION INTEGIEREN?
     Return $hGUI
 EndFunc
 
+Func ResetConfig()
+
+If FileExists($sIniFile) Then
+    $confirmation = MsgBox(36, "Confirmation", "Are you sure you want to delete the config file?", 0)
+    If $confirmation = 6 Then ; User clicked "Yes"
+        If FileDelete($sIniFile) Then
+            MsgBox(64, "Success", "Config file has been deleted successfully. Script will stop now.")
+			Exit
+        Else
+            MsgBox(16, "Error", "Error deleting the INI file.")
+        EndIf
+    Else ; User clicked "No"
+        MsgBox(48, "Canceled", "Deletion of INI file canceled.")
+    EndIf
+Else
+    MsgBox(48, "Warning", "INI file does not exist.")
+EndIf
+EndFunc
+
 ; Macros   
 	
 	Func ExitScript()
@@ -235,6 +357,7 @@ EndFunc
 
 	Func gotoHideout()
 		If Not WinActive("Path of Exile") Then Return
+		MsgBox(0,"f", $HotKey2 )
 		Send("{ENTER}")
 		Send("/hideout")
 		Send("{ENTER}")
@@ -246,10 +369,11 @@ EndFunc
 		Opt("SendKeyDelay", 150)
 		Sleep(50)
 		Send("!^c")
-		Send("{F7}")
+		Sleep(150)
+		Send($HotKey1)
 		Sleep(150)
 		If $counter < 1 Then 
-		MsgBox($MB_SYSTEMMODAL, "Waiting for google.docs", "Wait until you see the docs.google document is loaded. "& @CRLF & @CRLF &"Then press OK and repeat {F6} Price check on item.")
+		MsgBox($MB_SYSTEMMODAL, "Waiting for google.docs", "Wait until you see the docs.google document is loaded. "& @CRLF & @CRLF &"Then press OK and repeat"& $HotKey2&" Price check on item.")
 		Sleep(80)
 		Send("{ESC}")
 		$counter += 1
@@ -272,7 +396,7 @@ EndFunc
 		ClipPut($clipboardText)
 		If StringLeft($clipboardText, 4) = "ITEM" Then ExitLoop
 		$i += 1
-		If $i >= 50 Then
+		If $i >= 30 Then
         MsgBox(16, "Fehler", "Item Copy failed from docs.google!"& @CRLF &" Is this the correct docs.google site and anyone can write in it?: "& $sURL & @CRLF & @CRLF &"If yes, please contact KloppstockBW via github or reddit")
         Return
 		EndIf
