@@ -6,6 +6,8 @@ https://www.reddit.com/r/pathofexile/comments/17cktr0/awakened_poe_trade_on_gefo
 
 ### Hotkey Usage
 
+All Hotkeys are changeable in script
+
 | F5 | F6 | F7 | F9 | F11 |
 |-----|------|--------|----------|----------|
 | goto hideout | price check | open steam overlay | send thanks in local chat | force close script |
@@ -29,6 +31,7 @@ https://www.reddit.com/r/pathofexile/comments/17cktr0/awakened_poe_trade_on_gefo
 - config file in documents/mygames/Path Of EXILE containing:
   - URL to google.docs
   - setup status done
+  - Hotkey setup
   - F9 message with standard value for thanks
   - Mouse position to paste item details in GFN
   - Auto start awakened Poe trade if wanted
