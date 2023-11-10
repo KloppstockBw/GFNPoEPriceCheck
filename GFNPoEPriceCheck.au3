@@ -202,7 +202,6 @@ Func WindowRename()
 	Local $hWnd = WinGetHandle("[REGEXPTITLE:(?i)(.*GeForce.*Path of Exile.*)]")
     If $hWnd <> 0 Then WinSetTitle($hWnd, "", "Path of Exile")
     Sleep(100)
-	ConsoleWrite("hi")
 EndFunc
 
 Func configMaus()
