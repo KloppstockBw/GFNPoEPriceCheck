@@ -357,7 +357,6 @@ EndFunc
 
 	Func gotoHideout()
 		If Not WinActive("Path of Exile") Then Return
-		MsgBox(0,"f", $HotKey2 )
 		Send("{ENTER}")
 		Send("/hideout")
 		Send("{ENTER}")
