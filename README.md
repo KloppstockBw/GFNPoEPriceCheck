@@ -53,6 +53,10 @@ https://www.youtube.com/watch?v=K87GRUXJLl0
 8. Set Steam overlay default key to F7
 9. Have fun price checking in GeForce NOW
 
+-> If you have issues you can either delete config or change hotkey by clicking on the icon in tray
+
+-> ![Screenshot 2023-11-10 234637](https://github.com/KloppstockBw/GFNPoEPriceCheck/assets/147773628/768c64b9-7170-4d4e-a0f7-3f18c1586b91)
+
 ### to do 
 - troubleshooting
 - Gui to change config and stuff
