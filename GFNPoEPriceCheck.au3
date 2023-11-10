@@ -197,13 +197,12 @@ Func awakenedrunning()
 EndFunc
 
 Func WindowRename()
-While 1
     Local $hWnd = WinGetHandle("[REGEXPTITLE:(?i)(.*Path of Exile.*GeForce.*)]")
-    If $hWnd <> 0 Then
-        If WinSetTitle($hWnd, "", "Path of Exile") Then ExitLoop
-    EndIf
+	If $hWnd <> 0 Then WinSetTitle($hWnd, "", "Path of Exile")
+	Local $hWnd = WinGetHandle("[REGEXPTITLE:(?i)(.*GeForce.*Path of Exile.*)]")
+    If $hWnd <> 0 Then WinSetTitle($hWnd, "", "Path of Exile")
     Sleep(100)
-WEnd
+	ConsoleWrite("hi")
 EndFunc
 
 Func configMaus()
