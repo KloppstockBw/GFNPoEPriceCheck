@@ -1,6 +1,7 @@
 ### Changelog
 Tba         - New GUI
 
+20231201AA  - Bug Fix for spaces send to Awakened POE Trade
 20231105AA  - Hotkeys are now changable
             - Added fancy tray icon
 20231030A   - Updater only if necessary 
