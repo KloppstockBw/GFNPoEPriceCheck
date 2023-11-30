@@ -25,7 +25,7 @@ Global $counter = 0
 Global $counterwindow = 300
 Global $sURL = 0
 Global $URLau3 = "https://github.com/KloppstockBw/GFNPoEPriceCheck/blob/main/GFNPoEPriceCheck.au3"
-Global $VersionL = "20231110AA"
+Global $VersionL = "20231201AA"
 Global $updateChecked = False
 Global $WEBSITE, $UPDATE
 Global $ty = "thanks and good luck"
@@ -390,6 +390,7 @@ EndFunc
 		$position = StringInStr($extractedText, '"},{"ty')
 		$ClipboardText = StringLeft($extractedText, $position - 1)
 		$clipboardText = StringReplace(StringReplace(StringReplace(StringReplace($ClipboardText, "\u0027", "'"), "â€”", "—"), '\"', '"'), "\n", @CRLF)
+		$clipboardText = StringRegExpReplace($clipboardText, '\s+$', '')
 		ClipPut($clipboardText)
 		If StringLeft($clipboardText, 4) = "ITEM" Then ExitLoop
 		$i += 1
