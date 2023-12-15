@@ -1,5 +1,7 @@
 ### Changelog
-Tba         - New GUI
+Tba         
+20231215AA  - support for russian
+
 
 20231201AA  - Bug Fix for spaces send to Awakened POE Trade
 20231105AA  - Hotkeys are now changable
