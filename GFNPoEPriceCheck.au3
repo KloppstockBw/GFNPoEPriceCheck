@@ -25,7 +25,7 @@ Global $counter = 0
 Global $counterwindow = 300
 Global $sURL = 0
 Global $URLau3 = "https://github.com/KloppstockBw/GFNPoEPriceCheck/blob/main/GFNPoEPriceCheck.au3"
-Global $VersionL = "20231201AA"
+Global $VersionL = "20231215AA"
 Global $updateChecked = False
 Global $WEBSITE, $UPDATE
 Global $ty = "thanks and good luck"
@@ -61,6 +61,7 @@ $counterwindow = 0
 EndIf
  $counterwindow += 1
 WEnd
+
 
 Func LoadHotkeysFromIni()
     $HotKey1 = IniRead($sIniFile, "HotKey", "Key1", "{F7}")
@@ -193,6 +194,7 @@ Func awakenedrunning()
 		Next
 		MsgBox(0, "Status", "Please start 'Awakened PoE Trade' before running this script")
 		Exit
+	Sleep(100)	
 	Wend
 EndFunc
 
@@ -310,7 +312,7 @@ Func Updater()
     $updateChecked = True
 EndFunc
 
-Func CreateGUI() ; FUNKTION INTEGIEREN?
+Func CreateGUI() 
     Local $hGUI = GUICreate("Update Available", 400, 100)
     GUICtrlCreateLabel("There is a new version for the script on Github." & @CRLF & "Do you want to download the latest version?", 10, 10, 380, 50)
     $WEBSITE = GUICtrlCreateButton("Open Github", 50, 55, 150, 30)
@@ -323,7 +325,7 @@ Func ResetConfig()
 
 If FileExists($sIniFile) Then
     $confirmation = MsgBox(36, "Confirmation", "Are you sure you want to delete the config file?", 0)
-    If $confirmation = 6 Then ; User clicked "Yes"
+    If $confirmation = 6 Then ;yes
         If FileDelete($sIniFile) Then
             MsgBox(64, "Success", "Config file has been deleted successfully. Script will stop now.")
 			Exit
@@ -338,6 +340,7 @@ Else
 EndIf
 EndFunc
 
+
 ; Macros   
 	
 	Func ExitScript()
@@ -346,7 +349,9 @@ EndFunc
 
 	Func lasty()
 		If Not WinActive("Path of Exile") Then Return
+		Opt("SendKeyDelay", 0)
 		Send("^{ENTER}")
+		Sleep(5)
 		Send("^a")
 		Sleep(20)
 		Send($ty)
@@ -354,9 +359,12 @@ EndFunc
 	EndFunc
 
 	Func gotoHideout()
+		Opt("SendKeyDelay", 0)
 		If Not WinActive("Path of Exile") Then Return
 		Send("{ENTER}")
+		Sleep(5)
 		Send("/hideout")
+		Sleep(5)
 		Send("{ENTER}")
 	EndFunc
 
@@ -368,17 +376,18 @@ EndFunc
 		Send("!^c")
 		Sleep(150)
 		Send($HotKey1)
-		Sleep(150)
+		Sleep(200)
 		If $counter < 1 Then 
-		MsgBox($MB_SYSTEMMODAL, "Waiting for google.docs", "Wait until you see the docs.google document is loaded. "& @CRLF & @CRLF &"Then press OK and repeat"& $HotKey2&" Price check on item.")
-		Sleep(80)
-		Send("{ESC}")
+		Sleep(500)
+		MsgBox($MB_SYSTEMMODAL, "Waiting for google.docs", "Wait until you see the docs.google document is loaded. "& @CRLF & @CRLF &"Then press OK and repeat"& $HotKey2&" Price check on item."& @CRLF & @CRLF & "If the docs.google does not load then press ok, ignore error message that will come and load the docs.google manually in steam overlay. Then press: "& $HotKey2& " to close the window. The browser will stay open in background from now on.")
+		Sleep(100)
+		Send($HotKey1)
 		$counter += 1
 		Return
 		EndIf
 		Send("^a")
 		Send("^v")
-		Send("{ESC}")
+		Send($HotKey1)
 		Local $i = 0
 		While 1
 		Sleep(50)
@@ -391,12 +400,21 @@ EndFunc
 		$ClipboardText = StringLeft($extractedText, $position - 1)
 		$clipboardText = StringReplace(StringReplace(StringReplace(StringReplace($ClipboardText, "\u0027", "'"), "â€”", "—"), '\"', '"'), "\n", @CRLF)
 		$clipboardText = StringRegExpReplace($clipboardText, '\s+$', '')
-		ClipPut($clipboardText)
+        $clipboardText = StringRegExpReplace($clipboardText, 'вЂ”', '-')
+		ClipPut($clipboardText & @CRLF)
 		If StringLeft($clipboardText, 4) = "ITEM" Then ExitLoop
 		$i += 1
-		If $i >= 30 Then
-        MsgBox(16, "Fehler", "Item Copy failed from docs.google!"& @CRLF &" Is this the correct docs.google site and anyone can write in it?: "& $sURL & @CRLF & @CRLF &"If yes, please contact KloppstockBW via github or reddit")
-        Return
+		If $i >= 1 Then
+        ;MsgBox(16, "Fehler", "docs.google is either empty or not public."& @CRLF &" Please check why it does not contain item details!"& @CRLF & @CRLF &"You can try this steps:"& @CRLF &"1. Does the Steam browser opens automatically the docs.google as soon as you press the hotkey "& $HotKey1 &" while playing PoE?" & @CRLF &"   Check the Steps I am showing in the youtube video. Something seems to be wrong in your setup in Steam" & @CRLF &"2. When you Ctrl+V into notepad on your PC, does it show item details?" & @CRLF &"   If no, something on step 1 is wrong"
+        MsgBox(16, "Fehler", "docs.google is either empty or not public." & @CRLF & _
+        "Please check why it does not contain item details!" & @CRLF & @CRLF & _
+		"You can try these steps:" & @CRLF & @CRLF & _
+		"1. Does the Steam browser open automatically to docs.google as soon as you press the hotkey " & $HotKey1 & " while playing PoE?" & @CRLF & _
+		"->Check the Steps I am showing in the YouTube video. Something seems to be wrong in your setup in Steam" & @CRLF & @CRLF & _
+		"2. When you Ctrl+V into notepad on your PC, does it show item details?" & @CRLF & _
+		"->If no, something in step 1 is wrong")
+
+		Return
 		EndIf
 		WEnd
 		Send("+{SPACE}")
