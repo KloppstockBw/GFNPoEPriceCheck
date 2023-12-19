@@ -400,7 +400,7 @@ EndFunc
 		$ClipboardText = StringLeft($extractedText, $position - 1)
 		$clipboardText = StringReplace(StringReplace(StringReplace(StringReplace($ClipboardText, "\u0027", "'"), "â€”", "—"), '\"', '"'), "\n", @CRLF)
 		$clipboardText = StringRegExpReplace($clipboardText, '\s+$', '')
-        $clipboardText = StringRegExpReplace($clipboardText, 'вЂ”', '-')
+        $clipboardText = StringRegExpReplace($clipboardText, 'вЂ”', '—')
 		ClipPut($clipboardText & @CRLF)
 		If StringLeft($clipboardText, 4) = "ITEM" Then ExitLoop
 		$i += 1
