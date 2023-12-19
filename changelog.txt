@@ -1,7 +1,7 @@
 ### Changelog
 Tba         
 
-20231215AB  - Changed 'вЂ”', '-') to 'вЂ”', '—') 
+20231219AA  - Changed 'вЂ”', '-') to 'вЂ”', '—') 
 20231215AA  - support for russian
             - added empty line at the end 
 20231201AA  - Bug Fix for spaces send to Awakened POE Trade
