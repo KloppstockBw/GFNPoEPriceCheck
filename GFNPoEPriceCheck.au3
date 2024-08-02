@@ -25,7 +25,7 @@ Global $counter = 0
 Global $counterwindow = 300
 Global $sURL = 0
 Global $URLau3 = "https://github.com/KloppstockBw/GFNPoEPriceCheck/blob/main/GFNPoEPriceCheck.au3"
-Global $VersionL = "20240802AA"
+Global $VersionL = "20231215AA"
 Global $updateChecked = False
 Global $WEBSITE, $UPDATE
 Global $ty = "thanks and good luck"
@@ -34,7 +34,6 @@ Global $HotKey2 = ""
 Global $HotKey3 = ""
 Global $HotKey4 = ""
 Global $HotKey5 = ""
-Global $HotKey6 = ""
 If Not FileExists($sDirPath) Then DirCreate($sDirPath)
 If Not FileExists($sDirPath & "\GFNPoEPriceCheck.ico")Then InetGet("https://raw.githubusercontent.com/KloppstockBw/GFNPoEPriceCheck/main/favicon.ico", $sDirPath & "\GFNPoEPriceCheck.ico", $INET_FORCERELOAD)
 
@@ -75,8 +74,6 @@ Func LoadHotkeysFromIni()
     HotKeySet($HotKey4, "lasty")
     $HotKey5 = IniRead($sIniFile, "HotKey", "Key5", "{F11}")
     HotKeySet($HotKey5, "ExitScript")
-	$HotKey6 = IniRead($sIniFile, "HotKey", "Key6", "{F4}")
-    HotKeySet($HotKey6, "TradeInvite")
 	Local $Check = IniRead($sIniFile, "HotKey", "Key1", "")
 If $Check = "" Then ChangeHotkeys()
 EndFunc
@@ -85,7 +82,7 @@ Func ChangeHotkeys()
     Local $msg = MsgBox(4, "GFNPoEPriceCheck - HotKey", "Do you want to change the default script Hotkeys?"& @CRLF & @CRLF & "You can change it anytime by right clicking the tray icon")
 
 	If $msg = 6 Then
-        Local $gui = GUICreate("GFNPoEPriceCheck - HotKey", 300, 500)
+        Local $gui = GUICreate("GFNPoEPriceCheck - HotKey", 300, 440)
 		GUISetIcon($sDirPath & "\GFNPoEPriceCheck.ico", -58, $gui)
         GUICtrlSetFont(-1, 16, 800, 0, "Calibri", 5)
    Local $combo1 = GUICtrlCreateCombo("", 10, 100, 260, 20)
@@ -106,11 +103,8 @@ GUICtrlSetData($combo4, "{F1}|{F2}|{F3}|{F4}|{F5}|{F6}|{F7}|{F8}|{F9}|{F10}|{F11
 Local $combo5 = GUICtrlCreateCombo("", 10, 340, 260, 20)
 GUICtrlCreateLabel("Force Close this macro:", 10, 315)
 GUICtrlSetData($combo5, "{F1}|{F2}|{F3}|{F4}|{F5}|{F6}|{F7}|{F8}|{F9}|{F10}|{F11}|{F12}", $HotKey5)
-Local $combo6 = GUICtrlCreateCombo("", 10, 400, 260, 20)
-GUICtrlCreateLabel("Trade Invite:", 10, 375)
-GUICtrlSetData($combo6, "{F1}|{F2}|{F3}|{F4}|{F5}|{F6}|{F7}|{F8}|{F9}|{F10}|{F11}|{F12}", $HotKey6)
-Local $saveButton = GUICtrlCreateButton("Save", 40, 440, 90, 30)
-Local $cancelButton = GUICtrlCreateButton("Default", 170, 440, 90, 30)
+Local $saveButton = GUICtrlCreateButton("Save", 40, 380, 90, 30)
+Local $cancelButton = GUICtrlCreateButton("Default", 170, 380, 90, 30)
         GUISetState(@SW_SHOW, $gui)
         While 1
             Switch GUIGetMsg()
@@ -122,10 +116,9 @@ Local $cancelButton = GUICtrlCreateButton("Default", 170, 440, 90, 30)
                     $HotKey3 = "{F5}"
                     $HotKey4 = "{F9}"
                     $HotKey5 = "{F11}"
-					$HotKey6 = "{F4}"
                     UpdateHotkeys()
                     MsgBox(0, "Info", "The default hotkeys have been saved!")
-					MsgBox(0, "You are ready to go!", "Setup is done and you can start playing now!" & @CRLF & @CRLF & "Press in PoE GFN the Hotkey:" & @CRLF & @CRLF & $HotKey3 & " - go to hideout " & @CRLF & $HotKey2 & " - price check of item" & @CRLF & $HotKey4 & " - write " & $ty & " in local chat" & @CRLF & $HotKey6 & " - Answer Trader and invite him to party"& @CRLF & $HotKey5 & " - Force Close script" & @CRLF & @CRLF & "If you face any issues then please delete the config file at or right-click the tray icon:" & @CRLF & $sIniFile)
+					MsgBox(0, "You are ready to go!", "Setup is done and you can start playing now!" & @CRLF & @CRLF & "Press in PoE GFN the Hotkey:" & @CRLF & @CRLF & $HotKey3 & " - go to hideout " & @CRLF & $HotKey2 & " - price check of item" & @CRLF & $HotKey4 & " - write " & $ty & " in local chat" & @CRLF & $HotKey5 & " - Force Close script" & @CRLF & @CRLF & "If you face any issues then please delete the config file at or right-click the tray icon:" & @CRLF & $sIniFile)
                     ExitLoop
                 Case $saveButton
                     $HotKey1 = GUICtrlRead($combo1)
@@ -133,7 +126,6 @@ Local $cancelButton = GUICtrlCreateButton("Default", 170, 440, 90, 30)
                     $HotKey3 = GUICtrlRead($combo3)
                     $HotKey4 = GUICtrlRead($combo4)
                     $HotKey5 = GUICtrlRead($combo5)
-					$HotKey6 = GUICtrlRead($combo6)
 					MsgBox(0, "You are ready to go!", "Setup is done and you can start playing now!" & @CRLF & @CRLF & "Press in PoE GFN the Hotkey:" & @CRLF & @CRLF & $HotKey3 & " - go to hideout " & @CRLF & $HotKey2 & " - price check of item" & @CRLF & $HotKey4 & " - write " & $ty & " in local chat" & @CRLF & $HotKey5 & " - Force Close script" & @CRLF & @CRLF & "If you face any issues then please delete the config file at or right-click the tray icon:" & @CRLF & $sIniFile)
                     UpdateHotkeys()
                     MsgBox(0, "Info", "The hotkeys have been saved!")
@@ -152,13 +144,11 @@ Func UpdateHotkeys()
     HotKeySet($HotKey3, "HotKeyPressed3")
     HotKeySet($HotKey4, "HotKeyPressed4")
     HotKeySet($HotKey5, "HotKeyPressed5")
-	HotKeySet($HotKey6, "HotKeyPressed6")
 	iniWrite($sIniFile, "HotKey", "Key1", $HotKey1)
     IniWrite($sIniFile, "HotKey", "Key2", $HotKey2)
     IniWrite($sIniFile, "HotKey", "Key3", $HotKey3)
     IniWrite($sIniFile, "HotKey", "Key4", $HotKey4)
 	IniWrite($sIniFile, "HotKey", "Key5", $HotKey5)
-	IniWrite($sIniFile, "HotKey", "Key6", $HotKey6)
 	LoadHotkeysFromIni()
 EndFunc
 
@@ -167,7 +157,7 @@ Local $SetupStatus = 0
 If IniRead($sIniFile, "Setup Done", "Status", $SetupStatus) = 1 Then
 Return
 Else
-MsgBox(48, "You are ready to go!", "Setup is done and you can start playing now!" & @CRLF & @CRLF & "Press in PoE GFN the Hotkey:" & @CRLF & @CRLF & $HotKey3 & " - go to hideout " & @CRLF & $HotKey2 & " - price check of item" & @CRLF & $HotKey4 & " - write " & $ty & " in local chat" & @CRLF & f & " - Force Close script" & @CRLF & @CRLF & "If you face any issues then please delete the config file at or right-click the tray icon:" & @CRLF & $sIniFile)
+MsgBox(48, "You are ready to go!", "Setup is done and you can start playing now!" & @CRLF & @CRLF & "Press in PoE GFN the Hotkey:" & @CRLF & @CRLF & $HotKey3 & " - go to hideout " & @CRLF & $HotKey2 & " - price check of item" & @CRLF & $HotKey4 & " - write " & $ty & " in local chat" & @CRLF & $HotKey5 & " - Force Close script" & @CRLF & @CRLF & "If you face any issues then please delete the config file at or right-click the tray icon:" & @CRLF & $sIniFile)
 IniWrite($sIniFile, "Setup Done", "Status", 1)
 EndIf
 EndFunc	
@@ -367,28 +357,6 @@ EndFunc
 		Send($ty)
 		Send("{ENTER}")
 	EndFunc
-	
-		Func TradeInvite()
-		If Not WinActive("Path of Exile") Then Return
-		Opt("SendKeyDelay", 0)
-		Send("^{ENTER}")
-		Sleep(5)
-		Send("Hi, the item is ready to be picked up")
-		Send("{ENTER}")
-		Sleep(5)
-	    Send("^{ENTER}")
-		Sleep(5)
-		Send("^a")
-		Send("^c")
-		Send("{HOME}	")
-		Send("{DELETE} ")
-		Send("/invite ")
-		Send("{ENTER}")
-		Send("^{ENTER}")
-		Sleep(5)
-		Send("^v")
-		Send("{ENTER}")
-	EndFunc
 
 	Func gotoHideout()
 		Opt("SendKeyDelay", 0)
@@ -432,7 +400,6 @@ EndFunc
 		$ClipboardText = StringLeft($extractedText, $position - 1)
 		$clipboardText = StringReplace(StringReplace(StringReplace(StringReplace($ClipboardText, "\u0027", "'"), "â€”", "—"), '\"', '"'), "\n", @CRLF)
 		$clipboardText = StringRegExpReplace($clipboardText, '\s+$', '')
-		$ClipboardText = StringRegExpReplace($ClipboardText, "\u0026", "&")
         $clipboardText = StringRegExpReplace($clipboardText, 'вЂ”', '—')
 		ClipPut($clipboardText & @CRLF)
 		If StringLeft($clipboardText, 4) = "ITEM" Then ExitLoop
