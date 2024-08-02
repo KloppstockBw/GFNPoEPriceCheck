@@ -10,9 +10,9 @@ All Hotkeys are changeable in script - comfortable by a GUI
 
 The standard hotkeys are:
 
-| F5 | F6 | F7 | F9 | F11 |
-|-----|------|--------|----------|----------|
-| goto hideout | price check | open steam overlay | send thanks in local chat | force close script |
+| F4 | F5 | F6 | F7 | F9 | F11 |
+|-----|-----|------|--------|----------|----------|
+| invite trader| goto hideout | price check | open steam overlay | send thanks in local chat | force close script |
 
 ### Requirements
 
