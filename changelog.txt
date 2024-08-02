@@ -1,6 +1,7 @@
 ### Changelog
-Tba         
 
+20240802AA  - Added missing String Chars in copy Trade
+            - Added F4 for Tade invite
 20231219AA  - Changed 'вЂ”', '-') to 'вЂ”', '—') 
 20231215AA  - support for russian
             - added empty line at the end 
