@@ -43,19 +43,42 @@ The standard hotkeys are:
 **Video Guide** 
 https://www.youtube.com/watch?v=K87GRUXJLl0
 
-1. Create a https://docs.google.com/document/create document and activate share to everyone.
+1. Create a https://docs.google.com/document/create Google document and share it to everyone wit edit rights
 2. Run awakened PoE trade
 3. Run GFNPoEPriceCheck
 4. Decide in script if you want to autorun awakened on script start (recommended)
-5. Show the script where the awakened PoE trade input field is
-6. tell the script your docs.google URL
-7. Change default Website in Steam overlay to the created docs.google.com URL .
-8. Set Steam overlay default key to F7
+5. Show the script where the awakened PoE trade input field is. You have to click on the "Ctrl + V price check" field
+6. Copy the URL of your Google document and paste it in the script
+7. Change default Website in Steam overlay to the your google document's URL.
+8. Open GeForce Now and set Steam overlay default key to F7. Click to "Web browser" button. It will show your google doc. After that click F7 again to hide Steam overlay. So you should leave browser window open
 9. Have fun price checking in GeForce NOW
 
 -> If you have issues you can either delete config or change hotkey by clicking on the icon in tray
 
 -> ![Screenshot 2023-11-10 234637](https://github.com/KloppstockBw/GFNPoEPriceCheck/assets/147773628/768c64b9-7170-4d4e-a0f7-3f18c1586b91)
+
+# Troubleshooting
+## When I press F6 in GFN nothing is happening
+Check your hotkeys in Awakened Poe Trade. If you have changed it it has to be revert to default settings. Steps to fixing:
+1. Check Awakened Poe Trade debug log. If you see something like this:
+```
+[20:53:28] error [Shortcuts] Failed to register a shortcut "F5". It is already registered by another application.
+[20:53:28] error [Shortcuts] Failed to register a shortcut "F6". It is already registered by another application.
+```
+2. Revert hotkeys to default or just reinstall Awakened Poe Trade.
+
+## When I try to check prices I see the "Record clip" window instead
+If you have Zoom Workspace installed, it will conflict with script's shortcuts. Steps to fixing:
+1. Open Zoom Workspace 
+2. Go to Settings → Keyboard shortcuts
+3. Change "Record clip" global hotkey or just disable it.
+
+You also could close Zoom before playing.
+
+## When I try to check prices I only see Awakened Poe Trade main page and no price check
+It's probably because you didn't show the script exact location of "Ctrl + V price check" field. Steps to fixing:
+1. Right click on script in tray → Reset config
+2. On the last step point to the field.
 
 ### to do 
 - troubleshooting
