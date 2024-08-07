@@ -61,8 +61,8 @@ https://www.youtube.com/watch?v=K87GRUXJLl0
 ## When I press F6 in GFN nothing is happening
 Check your hotkeys in Awakened Poe Trade. If you have changed it it has to be revert to default settings. Steps to fixing:
 1. check Awakened Poe Trade debug log. If you see something like this:
--`[20:53:28] error [Shortcuts] Failed to register a shortcut "F5". It is already registered by another application.
-- [20:53:28] error [Shortcuts] Failed to register a shortcut "F6". It is already registered by another application.`
+  `[20:53:28] error [Shortcuts] Failed to register a shortcut "F5". It is already registered by another application.
+   [20:53:28] error [Shortcuts] Failed to register a shortcut "F6". It is already registered by another application.`
 2. Revert hotkeys to default or just reinstall Awakened Poe Trade.
 
 ## When I try to check prices I see the "Record clip" window instead
